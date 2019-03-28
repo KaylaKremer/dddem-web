@@ -27,7 +27,8 @@
     "react-dom": "^16.8.4",
     "react-ga": "^2.5.6",
     "react-sizeme": "^2.5.2",
-    "reactstrap": "^7.1.0"
+    "reactstrap": "^7.1.0",
+    "node-fetch": "^2.3.0"
   },
   "devDependencies": {}
 }

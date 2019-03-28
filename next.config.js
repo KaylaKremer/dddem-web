@@ -1,5 +1,5 @@
 const withCSS = require('@zeit/next-css')
-module.exports = withCSS(),{ 
+module.exports = withCSS(), {
     exportPathMap: function () {
         return {
             '/': { page: '/' },
@@ -7,7 +7,8 @@ module.exports = withCSS(),{
             '/venue/': { page: '/venue' },
             '/sponsorship/': { page: '/sponsorship' },
             '/faq/': { page: '/faq' },
-            '/code-of-conduct/': { page: '/code-of-conduct' }
+            '/code-of-conduct/': { page: '/code-of-conduct' },
+            '/voting': { page: '/voting' }
         }
     }
 }

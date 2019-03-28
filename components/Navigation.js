@@ -46,6 +46,7 @@ class Navigation extends Component {
             }}>Tickets</Nav.Link>
 
           <Nav.Link href="/code-of-conduct">Code of Conduct</Nav.Link>
+          <Nav.Link href="/voting">Voting</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
