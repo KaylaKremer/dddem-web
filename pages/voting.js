@@ -4,6 +4,7 @@ import VotingList from "../components/Voting";
 import theme from "../theme/theme";
 import Head from "next/head";
 import votingdata from '../utils/votingdata.js';
+const fetch = require("node-fetch");
 
 const votingpage = props => {
     return (
@@ -20,7 +21,7 @@ const votingpage = props => {
                     <li>Press Submit</li>
                 </ol>
             </section>
-            <VotingList canVote={props.canVote} loginLink={props.loginLink} />
+            <VotingList canVote={props.canVote} loginLink={props.loginLink} entries={props.entries} />
             <style jsx>
                 {`
 
@@ -37,9 +38,19 @@ const votingpage = props => {
 
 votingpage.getInitialProps = async function ({ req }) {
     const canVote = req.headers['cookie'].split(';').find(i => i.length > 7 && i.trim().substr(0, 7) == "voteid=") != undefined;
+
+    const entrydata = await fetch(votingdata.votingApiEndpoint, {
+        method: 'GET',
+        headers: {
+            'x-api-key':votingdata.votingApiKey
+        }
+    });
+    const apidata = await entrydata.json();
+
     const response = {
         canVote:canVote,
-        loginLink:`https://www.eventbrite.com/oauth/authorize?response_type=code&client_id=${votingdata.clientToken}&redirect_uri=${votingdata.callbackpage}`
+        loginLink:`https://www.eventbrite.com/oauth/authorize?response_type=code&client_id=${votingdata.clientToken}&redirect_uri=${votingdata.callbackpage}`,
+        entries:apidata
     }
     return response;
 }

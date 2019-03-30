@@ -36,6 +36,7 @@ class votingcallback extends React.Component {
             cookieValue = await response.json();
         }
 
+        console.log(`cookie value: ${JSON.stringify(cookieValue)}`);
         if (res) {
             if (cookieValue.hasOwnProperty('access_token')) {
                 const encryptedCookie = encrypt(cookieValue['access_token'].toString());
