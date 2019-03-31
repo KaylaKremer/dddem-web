@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import theme from "../theme/theme";
 
 export function VotingEntry(props) {
+    const toggle = useRef(null);
+    const toggleSelection = async (id) => {
+        toggle.current.innerText = "Remove from shortlist";
+        toggle.current.disabled = "disabled";
+        alert(id);
+        toggle.current.disabled = "";
+    }
+
     return (<section>
         <h2>{props.data.title}{(props.canVote) ?
-            (<subtle>Add to shortlist</subtle>)
+            (<subtle><a ref={toggle} onClick={() => toggleSelection(props.data.id)}>Add to shortlist</a></subtle>)
             :
             (<subtle><a href={props.loginLink}>Login to vote</a></subtle>)
         }</h2>
